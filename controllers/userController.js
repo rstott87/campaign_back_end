@@ -90,7 +90,7 @@ exports.user_detail = function (req, res, next) {
       if (err) {
         return next(err);
       } // Error in API usage.
-      if (results.author == null) {
+      if (results.user == null) {
         // No results.
         var err = new Error("User not found");
         err.status = 404;

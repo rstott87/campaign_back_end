@@ -2,12 +2,19 @@ extends layout
 
 block content
 
-  h1 User: #{user.name}
+  h1 User Detail
+  h2 #[strong Name:] #{user.name}
+  h3 User ID: #{user._id}
+  h3 Telephone #: #{user.phone_number}
+  h3 Email: #{user.personal_email}
+  h3 Chapter: #{user.local_chapter}
+
+
 
 
   div(style='margin-left:20px;margin-top:20px')
 
 
-    p
-    a(href=user.url+'/delete') Delete User
+  p
+  a(href=user.url+'/delete') Delete User
 
