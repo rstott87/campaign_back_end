@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var catalogRouter = require("./routes/index");
+var compression = require("compression");
 var helmet = require("helmet");
 
 var indexRouter = require('./routes/index');
