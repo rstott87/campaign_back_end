@@ -2,10 +2,10 @@ extends layout
 
 block content
 
-    p Do you really want to delete #{user.name_first}  #{user.name_last}?
+    p Do you really want to delete #{user.first_name} #{user.last_name}?
 
     form(method='POST' action='')
       div.form-group
-        input#userid.form-control(type='hidden',name='userid', required='true', value=bookinstance._id )
+        input#userid.form-control(type='hidden',name='userid', required='true', value=user._id )
 
       button.btn.btn-primary(type='submit') Delete

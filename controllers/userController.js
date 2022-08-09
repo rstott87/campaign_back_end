@@ -2,11 +2,11 @@ var async = require("async");
 var User = require("../models/user");
 const { body, validationResult } = require("express-validator");
 
+//CREATEE
 // Handle User create on GET.
 exports.user_create_get = function (req, res, next) {
   res.render("user_form", { title: "Create User" });
 };
-
 // Handle User create on POST.
 exports.user_create_post = [
   // Validate and sanitize fields.
@@ -63,6 +63,7 @@ exports.user_create_post = [
   }
 ];
 
+//READ
 // Display list of all Users.
 exports.user_list = function (req, res, next) {
   User.find()
@@ -78,7 +79,6 @@ exports.user_list = function (req, res, next) {
       });
     });
 };
-
 exports.user_detail = function (req, res, next) {
   async.parallel(
     {
@@ -103,4 +103,39 @@ exports.user_detail = function (req, res, next) {
       });
     }
   );
+};
+
+//DELETE
+exports.user_delete_get = function (req, res, next) {
+  async.parallel(
+    {
+      user(callback) {
+        User.findById(req.params.id).exec(callback);
+      }
+    },
+    function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      if (results.user == null) {
+        // No results.
+        res.redirect("/users");
+      }
+      // Successful, so render.
+      res.render("user_delete", {
+        title: "Delete User",
+        user: results.user
+      });
+    }
+  );
+};
+
+exports.user_delete_post = function (req, res, next) {
+  User.findByIdAndRemove(req.body.userid, function deleteUser(err) {
+    if (err) {
+      return next(err);
+    }
+    // Success - go to user list
+    res.redirect("/users");
+  });
 };
