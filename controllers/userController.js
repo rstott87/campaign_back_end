@@ -24,7 +24,7 @@ exports.user_create_post = [
     .withMessage("Last name must be specified.")
     .isAlphanumeric()
     .withMessage("Family name has non-alphanumeric characters."),
-  body("personal_email").trim().isLength({ min: 1 }).escape(),
+  body("personal_email"),
   body("phone_number"),
   body("local_chapter").trim().isLength({ min: 1 }).escape(),
 
@@ -48,7 +48,7 @@ exports.user_create_post = [
       var user = new User({
         first_name: req.body.first_name,
         last_name: req.body.last_name,
-        personal_email: req.body.persoal_email,
+        personal_email: req.body.personal_email,
         phone_number: req.body.phone_number,
         local_chapter: req.body.local_chapter
       });

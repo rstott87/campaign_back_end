@@ -1,17 +1,19 @@
 extends layout
 
 block content
+  p 
+    a(href='/') #{"Return to Main Page"}
   h1= title
-
   ul
     each user in user_list
       li 
         h2 #{user.name}
         p Phone: #{user.phone_number}
-        p Email: 
+        p Email: #{user.personal_email}
         P Chapter: #{user.local_chapter}
-        a(href=user.url) #{"more info"}
+        a(href=user.url) #{"More Info on User"}
 
-        
     else
       li There are no Users.
+
+  
