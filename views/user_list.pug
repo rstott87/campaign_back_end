@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h1= title
+
+  ul
+    each user in user_list
+      li 
+        h2 #{user.name}
+        p Phone: #{user.phone_number}
+        p Email: 
+        P Chapter: #{user.local_chapter}
+        a(href=user.url) #{"more info"}
+
+        
+    else
+      li There are no Users.

@@ -1,0 +1,13 @@
+extends layout
+
+block content
+
+  h1 User: #{user.name}
+
+
+  div(style='margin-left:20px;margin-top:20px')
+
+
+    p
+    a(href=user.url+'/delete') Delete User
+
