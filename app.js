@@ -3,6 +3,8 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var catalogRouter = require("./routes/index");
+var helmet = require("helmet");
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -10,7 +12,8 @@ var usersRouter = require('./routes/users');
 var app = express();
 
 var mongoose = require("mongoose");
-var mongoDB = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ll6n8.mongodb.net/campaign_submissions?retryWrites=true&w=majority";
+var dev_db_url = "mongodb+srv://m001-student:m001-mongodb-basics@sandbox.ll6n8.mongodb.net/campaign_submissions?retryWrites=true&w=majority";
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
@@ -23,7 +26,9 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(compression());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(helmet());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
