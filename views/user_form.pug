@@ -1,0 +1,25 @@
+extends layout
+
+block content
+  h1=title
+
+  form(method='POST' action='')
+    div.form-group
+      label(for='first_name') First Name:
+      input#first_name.form-control(type='text' placeholder='First name (Christian)' name='first_name' required='true' value=(undefined===user ? '' : user.first_name) )
+      label(for='last_name') Last Name:
+      input#last_name.form-control(type='text' placeholder='Last name (Surname)' name='last_name' required='true' value=(undefined===user ? '' : user.last_name))
+    div.form-group
+      label(for='personal_email') Email:
+      input#personal_email.form-control(type='text' name='personal_email' value=(undefined===user ? '' : user.personal_email) )
+    div.form-group
+      label(for='phone_number') Phone Number:
+      input#date_of_birth.form-control(type='text' name='phone_number' value=(undefined===user ? '' : user.phone_number) )
+    div.form-group
+      label(for='local_chapter') Local Chapter:
+      input#date_of_birth.form-control(type='text' name='local_chapter' value=(undefined===user ? '' : user.local_chapter) )
+    button.btn.btn-primary(type='submit') Submit
+  if errors
+    ul
+      for error in errors
+        li!= error.msg
