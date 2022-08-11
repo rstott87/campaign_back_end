@@ -57,8 +57,9 @@ exports.user_create_post = [
   }
 ];
 
-//READ
+//READ / GET
 // Display list of all Users.
+//sorts in order from most recently created
 exports.user_list = function (req, res, next) {
   User.find()
     .sort([["createdAt", "descending"]])

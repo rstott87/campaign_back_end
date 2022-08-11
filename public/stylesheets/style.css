@@ -8,8 +8,9 @@ a {
 }
 
 .individual {
-  border: 2px solid black;
-  border-radius: 20px;
+  border: 2px solid rgb(149, 137, 137);
+  box-shadow: 10px 5px 10px rgb(73, 73, 73);
+  border-radius: 10px;
   padding: 15px;
   margin: 25px;
 }
@@ -19,5 +20,5 @@ ul {
 }
 
 .individual button{
-  margin-right: 20px;
+  margin-right: 10px;
 }
