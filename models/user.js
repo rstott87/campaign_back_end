@@ -9,7 +9,6 @@ var UserSchema = new Schema(
     personal_email: { type: String },
     phone_number: { type: String },
     local_chapter: { type: String },
-    submission_date: { type: Date }
   },
   { timestamps: true }
 );
