@@ -11,18 +11,12 @@ exports.user_create_get = function (req, res, next) {
 exports.user_create_post = [
   // Validate and sanitize fields.
   body("first_name")
-    .trim()
     .isLength({ min: 1 })
-    .escape()
     .withMessage("First name must be specified.")
-    .isAlphanumeric()
     .withMessage("First name has non-alphanumeric characters."),
   body("last_name")
-    .trim()
     .isLength({ min: 1 })
-    .escape()
     .withMessage("Last name must be specified.")
-    .isAlphanumeric()
     .withMessage("Family name has non-alphanumeric characters."),
   body("personal_email"),
   body("phone_number"),

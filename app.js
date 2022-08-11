@@ -36,6 +36,10 @@ app.use(helmet());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.get("/", function (req, res, next) {
+  res.json({ msg: "This is CORS-enabled for all origins!" });
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
