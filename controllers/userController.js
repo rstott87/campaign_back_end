@@ -67,6 +67,7 @@ exports.user_list = function (req, res, next) {
         return next(err);
       }
       //Successful, so render
+      console.log(list_users)
       res.render("user_list", {
         title: "User List",
         user_list: list_users

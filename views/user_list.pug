@@ -2,16 +2,23 @@ extends layout
 
 block content
   p 
-    a(href='/') #{"Return to Main Page"}
+    a(href='/') 
+      button.btn.btn-info Return to Main Page
   h1= title
-  ul
+  ul 
     each user in user_list
-      li 
+      li
+       div(class='individual')
         h2 #{user.name}
         p Phone: #{user.phone_number}
         p Email: #{user.personal_email}
         P Chapter: #{user.local_chapter}
-        a(href=user.url) #{"More Info on User"}
+        P Created At: #{user.createdAt}
+        a(href=user.url)
+          button.btn.btn-primary More Info
+        a(href=user.url +'/delete')
+           button.btn.btn-danger Delete
+        
 
     else
       li There are no Users.
