@@ -61,7 +61,7 @@ exports.user_create_post = [
 // Display list of all Users.
 exports.user_list = function (req, res, next) {
   User.find()
-    .sort([["last_name", "ascending"]])
+    .sort([["createdAt", "descending"]])
     .exec(function (err, list_users) {
       if (err) {
         return next(err);
