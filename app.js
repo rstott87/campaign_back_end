@@ -8,7 +8,7 @@ var logger = require("morgan");
 var catalogRouter = require("./routes/index");
 var compression = require("compression");
 var helmet = require("helmet");
-var cors = require("cors");
+
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
