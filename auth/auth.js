@@ -1,16 +1,16 @@
 const passport = require("passport");
 const localStrategy = require("passport-local").Strategy;
-const AdminModel = require("./model/model");
+const AdminModel = require("../models/admin");
 const JWTstrategy = require("passport-jwt").Strategy;
 const ExtractJWT = require("passport-jwt").ExtractJwt;
 
-// ...
+// passport strategies
 
 passport.use(
   "signup",
   new localStrategy(
     {
-      adminNameField: "email",
+      usernameField: "email",
       passwordField: "password"
     },
     async (email, password, done) => {
@@ -47,7 +47,7 @@ passport.use(
   "login",
   new localStrategy(
     {
-      adminnameField: "email",
+      usernameField: "email",
       passwordField: "password"
     },
     async (email, password, done) => {

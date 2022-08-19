@@ -5,27 +5,34 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-var catalogRouter = require("./routes/users");
 var compression = require("compression");
 var helmet = require("helmet");
-var cors = require("cors")
-
-var indexRouter = require("./routes/users");
-var usersRouter = require("./routes/users");
+var mongoose = require("mongoose");
+var cors = require("cors");
+const passport = require("passport");
+const bodyParser = require("body-parser");
+const AdminModel = require("./models/admin");
 
 var app = express();
 
-var mongoose = require("mongoose");
+
 
 var mongoDB = process.env.MONGO_DB_URL;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.set("useCreateIndex", true);
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
+
+require("./auth/auth");
+
+var secureRoute = require("./routes/users");
+var publicRoute = require("./routes/publicRoute");
+
+var app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
-
 
 app.use(cors());
 app.use(logger("dev"));
@@ -36,12 +43,18 @@ app.use(compression());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 
-app.use("/", indexRouter);
-app.use("/users", usersRouter);
+app.use("/", publicRoute);
 
-app.get("/", function (req, res, next) {
-  res.json({ msg: "This is CORS-enabled for all origins!" });
-});
+app.use(
+  "/private",
+  passport.authenticate("jwt", { session: false }),
+  secureRoute
+);
+
+
+// app.get("/", function (req, res, next) {
+//   res.json({ msg: "This is CORS-enabled for all origins!" });
+// });
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
