@@ -7,6 +7,7 @@ const router = express.Router();
 // ...
 
 //imow - when post request is made to route /signup, passport's authenticate method is run. responds with json that sing up was succesful and includes the ueser from the REQ object.
+
 router.post(
   "/signup",
   passport.authenticate("signup", { session: false }),
@@ -17,6 +18,8 @@ router.post(
     });
   }
 );
+
+router.get("/login", (req, res) => res.render("login"));
 
 router.post("/login", async (req, res, next) => {
   passport.authenticate("login", async (err, admin, info) => {
