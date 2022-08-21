@@ -1,1 +1,13 @@
-p Please Log In to Continue
+extends layout
+
+block content
+    
+    h2 Log In is Required
+    form(method='POST' action='/login')
+        div.form-group
+            label(for='email') Email
+            input#email.form-control(type='text' placeholder='email' name='email' required='true')
+        div.form-group
+            label(for='password') password
+            input#password.form-control(type='password' placeholder='password' name='password' required='true' )  
+        button.btn.btn-primary(type='submit') Log In
