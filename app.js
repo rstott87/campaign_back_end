@@ -15,8 +15,6 @@ const AdminModel = require("./models/admin");
 
 var app = express();
 
-
-
 var mongoDB = process.env.MONGO_DB_URL;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 mongoose.set("useCreateIndex", true);
@@ -25,7 +23,12 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 require("./auth/auth");
 
-var secureRoute = require("./routes/users");
+app.use(function (req, res, next) {
+  res.locals.token = req.token;
+  next();
+});
+
+var secureRoute = require("./routes/privateRoute");
 var publicRoute = require("./routes/publicRoute");
 
 var app = express();
@@ -44,13 +47,11 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use(helmet());
 
 app.use("/", publicRoute);
-
 app.use(
   "/private",
   passport.authenticate("jwt", { session: false }),
   secureRoute
 );
-
 
 // app.get("/", function (req, res, next) {
 //   res.json({ msg: "This is CORS-enabled for all origins!" });
