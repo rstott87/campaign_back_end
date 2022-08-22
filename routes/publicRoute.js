@@ -5,7 +5,7 @@ var admin_controller = require("../controllers/adminController");
 
 const router = express.Router();
 
-router.get("/login", admin_controller.admin_login_get);
+router.get("/", admin_controller.admin_login_get);
 router.post("/login", admin_controller.admin_login_post);
 
 module.exports = router;
