@@ -25,11 +25,19 @@ passport.use(
   )
 );
 
+var cookieExtractor = function (req) {
+  var token = null;
+  if (req && req.cookies) {
+    token = req.cookies["jwt"];
+  }
+  return token;
+};
+
 passport.use(
   new JWTstrategy(
     {
       secretOrKey: "TOP_SECRET",
-      jwtFromRequest: ExtractJWT.fromUrlQueryParameter("secret_token")
+      jwtFromRequest: cookieExtractor
     },
     async (token, done) => {
       try {
@@ -71,4 +79,3 @@ passport.use(
     }
   )
 );
-
