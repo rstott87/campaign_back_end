@@ -2,18 +2,6 @@ var express = require("express");
 var router = express.Router();
 var cors = require("cors");
 
-
-//to test auth
-router.get("/profile", (req, res, next) => {
-  res.json({
-    message: "You made it to the secure route",
-    user: req.user,
-    token: req.query.secret_token
-  });
-});
-
-module.exports = router;
-
 var user_controller = require("../controllers/userController");
 
 /* GET home page. */
@@ -38,6 +26,5 @@ router.get("/user/:id/delete", user_controller.user_delete_get);
 
 //POST request to delete User
 router.post("/user/:id/delete", user_controller.user_delete_post);
-
 
 module.exports = router;
