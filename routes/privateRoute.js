@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
 var cors = require("cors");
-
 var user_controller = require("../controllers/userController");
 
 /* GET home page. */
