@@ -132,6 +132,6 @@ exports.user_delete_post = function (req, res, next) {
       return next(err);
     }
     // Success - go to user list
-    res.redirect("/users");
+    res.redirect("/private/users");
   });
 };
