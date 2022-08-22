@@ -34,7 +34,7 @@ router.post("/login", async (req, res, next) => {
         const body = { _id: admin._id, email: admin.email };
         const token = jwt.sign({ admin: body }, "TOP_SECRET");
         res.cookie("jwt", token);
-        return res.redirect('/private/welcome');
+        return res.redirect("/private/welcome");
       });
     } catch (error) {
       return next(error);

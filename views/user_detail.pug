@@ -14,10 +14,10 @@ block content
 
   div(style='margin-left:20px;margin-top:20px')
 
-  h2 
-  a(href='/private/users') Back to List
-  p
-  a(href='/private/user' + user.url + '/delete') Delete User
-  p
-  a(href='/private/user/create') Add Another User
+  li 
+    a(href='/private/users') Back to List
+  li
+    a(href=user.url +'/delete') Delete User
+  li
+    a(href='/private/user/create') Add Another User
 
