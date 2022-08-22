@@ -25,6 +25,7 @@ require("./auth/auth");
 
 app.use(function (req, res, next) {
   res.locals.token = req.token;
+  
   next();
 });
 
