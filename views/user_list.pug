@@ -2,7 +2,7 @@ extends layout
 
 block content
   p 
-    a(href='/') 
+    a(href='/private/welcome') 
       button.btn.btn-info Return to Main Page
   h1= title
   ul 
@@ -16,7 +16,7 @@ block content
         P Created At: #{user.createdAt}
         a(href=user.url)
           button.btn.btn-primary More Info
-        a(href=user.url +'/delete')
+        a(href=user.url +'private/delete')
            button.btn.btn-danger Delete
         
 
