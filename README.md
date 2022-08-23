@@ -1,4 +1,4 @@
-# The Dave Foley for 509 Campaign API
+# The Dave Foley for Local 509 President Campaign API
 
 ### A server-side web application that provides authorization, authentication, routing, template rendering, data modeling and validation, and CRUD access to a MongoDB Atlas database mainly by acting as a REST API for the campaign's front-end website. 
 ## As an API
