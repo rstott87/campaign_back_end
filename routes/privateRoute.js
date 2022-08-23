@@ -17,7 +17,6 @@ router.get(
 // GET request for creating User. NOTE This must come before route for id (i.e. display user).
 router.get(
   "/user/create",
-  passport.authenticate("jwt", { session: false }),
   user_controller.user_create_get
 );
 
