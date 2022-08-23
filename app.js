@@ -49,7 +49,6 @@ app.use(helmet());
 app.use("/", publicRoute);
 app.use(
   "/private",
-  passport.authenticate("jwt", { session: false }),
   secureRoute
 );
 // catch 404 and forward to error handler
