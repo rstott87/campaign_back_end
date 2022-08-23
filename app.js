@@ -23,11 +23,10 @@ db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
 require("./auth/auth");
 
-app.use(function (req, res, next) {
-  res.locals.token = req.token;
-  
-  next();
-});
+// app.use(function (req, res, next) {
+//   res.locals.token = req.token;
+//   next();
+// });
 
 var secureRoute = require("./routes/privateRoute");
 var publicRoute = require("./routes/publicRoute");
@@ -53,16 +52,10 @@ app.use(
   passport.authenticate("jwt", { session: false }),
   secureRoute
 );
-
-// app.get("/", function (req, res, next) {
-//   res.json({ msg: "This is CORS-enabled for all origins!" });
-// });
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
 // error handler
 app.use(function (err, req, res, next) {
   // set locals, only providing error in development
