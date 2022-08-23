@@ -18,7 +18,7 @@ exports.admin_login_post = async (req, res, next) => {
         if (error) return next(error);
         const body = { _id: admin._id, email: admin.email };
         const token = jwt.sign({ admin: body }, "TOP_SECRET");
-        res.cookie("jwt", token);
+        // res.cookie("jwt", token);
         return res.redirect("/private/welcome");
       });
     } catch (error) {
